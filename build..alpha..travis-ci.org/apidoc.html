@@ -1,0 +1,2593 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/sitegui/nodejs-websocket#readme"
+
+    >nodejs-websocket (v1.7.1)</a>
+</h1>
+<h4>Basic server&client approach to websocket (text and binary frames)</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nodejs-websocket">module nodejs-websocket</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection">
+            function <span class="apidocSignatureSpan">nodejs-websocket.</span>Connection
+            <span class="apidocSignatureSpan">(socket, parentOrOptions, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.InStream">
+            function <span class="apidocSignatureSpan">nodejs-websocket.</span>InStream
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.OutStream">
+            function <span class="apidocSignatureSpan">nodejs-websocket.</span>OutStream
+            <span class="apidocSignatureSpan">(connection, minSize)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Server">
+            function <span class="apidocSignatureSpan">nodejs-websocket.</span>Server
+            <span class="apidocSignatureSpan">(secure, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.connect">
+            function <span class="apidocSignatureSpan">nodejs-websocket.</span>connect
+            <span class="apidocSignatureSpan">(URL, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.createServer">
+            function <span class="apidocSignatureSpan">nodejs-websocket.</span>createServer
+            <span class="apidocSignatureSpan">(options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.setBinaryFragmentation">
+            function <span class="apidocSignatureSpan">nodejs-websocket.</span>setBinaryFragmentation
+            <span class="apidocSignatureSpan">(bytes)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.setMaxBufferLength">
+            function <span class="apidocSignatureSpan">nodejs-websocket.</span>setMaxBufferLength
+            <span class="apidocSignatureSpan">(bytes)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">nodejs-websocket.</span>Connection.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">nodejs-websocket.</span>InStream.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">nodejs-websocket.</span>OutStream.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">nodejs-websocket.</span>Server.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">nodejs-websocket.</span>frame</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nodejs-websocket.Connection">module nodejs-websocket.Connection</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.Connection">
+            function <span class="apidocSignatureSpan">nodejs-websocket.</span>Connection
+            <span class="apidocSignatureSpan">(socket, parentOrOptions, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.super_">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.</span>super_
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">nodejs-websocket.Connection.</span>binaryFragmentation</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">nodejs-websocket.Connection.</span>maxBufferLength</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nodejs-websocket.Connection.prototype">module nodejs-websocket.Connection.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.prototype.answerHandshake">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>answerHandshake
+            <span class="apidocSignatureSpan">(lines)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.prototype.beginBinary">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>beginBinary
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.prototype.buildRequest">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>buildRequest
+            <span class="apidocSignatureSpan">(requestLine, headers)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.prototype.checkHandshake">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>checkHandshake
+            <span class="apidocSignatureSpan">(lines)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.prototype.close">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>close
+            <span class="apidocSignatureSpan">(code, reason)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.prototype.doRead">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>doRead
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.prototype.extractFrame">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>extractFrame
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.prototype.processCloseFrame">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>processCloseFrame
+            <span class="apidocSignatureSpan">(payload)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.prototype.processFrame">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>processFrame
+            <span class="apidocSignatureSpan">(fin, opcode, payload)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.prototype.readHandshake">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>readHandshake
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.prototype.readHeaders">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>readHeaders
+            <span class="apidocSignatureSpan">(lines)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.prototype.send">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>send
+            <span class="apidocSignatureSpan">(data, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.prototype.sendBinary">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>sendBinary
+            <span class="apidocSignatureSpan">(data, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.prototype.sendPing">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>sendPing
+            <span class="apidocSignatureSpan">(data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.prototype.sendText">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>sendText
+            <span class="apidocSignatureSpan">(str, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Connection.prototype.startHandshake">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>startHandshake
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>CLOSED</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>CLOSING</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>CONNECTING</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>OPEN</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nodejs-websocket.InStream">module nodejs-websocket.InStream</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.InStream.InStream">
+            function <span class="apidocSignatureSpan">nodejs-websocket.</span>InStream
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.InStream.super_">
+            function <span class="apidocSignatureSpan">nodejs-websocket.InStream.</span>super_
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nodejs-websocket.InStream.prototype">module nodejs-websocket.InStream.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.InStream.prototype._read">
+            function <span class="apidocSignatureSpan">nodejs-websocket.InStream.prototype.</span>_read
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.InStream.prototype.addData">
+            function <span class="apidocSignatureSpan">nodejs-websocket.InStream.prototype.</span>addData
+            <span class="apidocSignatureSpan">(data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.InStream.prototype.end">
+            function <span class="apidocSignatureSpan">nodejs-websocket.InStream.prototype.</span>end
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nodejs-websocket.OutStream">module nodejs-websocket.OutStream</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.OutStream.OutStream">
+            function <span class="apidocSignatureSpan">nodejs-websocket.</span>OutStream
+            <span class="apidocSignatureSpan">(connection, minSize)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.OutStream.super_">
+            function <span class="apidocSignatureSpan">nodejs-websocket.OutStream.</span>super_
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nodejs-websocket.OutStream.prototype">module nodejs-websocket.OutStream.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.OutStream.prototype._write">
+            function <span class="apidocSignatureSpan">nodejs-websocket.OutStream.prototype.</span>_write
+            <span class="apidocSignatureSpan">(chunk, encoding, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nodejs-websocket.Server">module nodejs-websocket.Server</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Server.Server">
+            function <span class="apidocSignatureSpan">nodejs-websocket.</span>Server
+            <span class="apidocSignatureSpan">(secure, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Server.super_">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Server.</span>super_
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nodejs-websocket.Server.prototype">module nodejs-websocket.Server.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Server.prototype._buildSelectProtocol">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Server.prototype.</span>_buildSelectProtocol
+            <span class="apidocSignatureSpan">(validProtocols)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Server.prototype.close">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Server.prototype.</span>close
+            <span class="apidocSignatureSpan">(callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.Server.prototype.listen">
+            function <span class="apidocSignatureSpan">nodejs-websocket.Server.prototype.</span>listen
+            <span class="apidocSignatureSpan">(port, host, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nodejs-websocket.frame">module nodejs-websocket.frame</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.frame.createBinaryFrame">
+            function <span class="apidocSignatureSpan">nodejs-websocket.frame.</span>createBinaryFrame
+            <span class="apidocSignatureSpan">(data, masked, first, fin)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.frame.createCloseFrame">
+            function <span class="apidocSignatureSpan">nodejs-websocket.frame.</span>createCloseFrame
+            <span class="apidocSignatureSpan">(code, reason, masked)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.frame.createPingFrame">
+            function <span class="apidocSignatureSpan">nodejs-websocket.frame.</span>createPingFrame
+            <span class="apidocSignatureSpan">(data, masked)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.frame.createPongFrame">
+            function <span class="apidocSignatureSpan">nodejs-websocket.frame.</span>createPongFrame
+            <span class="apidocSignatureSpan">(data, masked)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nodejs-websocket.frame.createTextFrame">
+            function <span class="apidocSignatureSpan">nodejs-websocket.frame.</span>createTextFrame
+            <span class="apidocSignatureSpan">(data, masked)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nodejs-websocket" id="apidoc.module.nodejs-websocket">module nodejs-websocket</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection" id="apidoc.element.nodejs-websocket.Connection">
+        function <span class="apidocSignatureSpan">nodejs-websocket.</span>Connection
+        <span class="apidocSignatureSpan">(socket, parentOrOptions, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Connection(socket, parentOrOptions, callback) {
+	var that = this,
+		connectEvent
+
+	if (parentOrOptions instanceof Server) {
+		// Server-side connection
+		this.server = parentOrOptions
+		this.path = null
+		this.host = null
+		this.extraHeaders = null
+		this.protocols = []
+	} else {
+		// Client-side
+		this.server = null
+		this.path = parentOrOptions.path
+		this.host = parentOrOptions.host
+		this.extraHeaders = parentOrOptions.extraHeaders
+		this.protocols = parentOrOptions.protocols || []
+	}
+
+	this.protocol = undefined
+	this.socket = socket
+	this.readyState = this.CONNECTING
+	this.buffer = new Buffer(0)
+	this.frameBuffer = null // string for text frames and InStream for binary frames
+	this.outStream = null // current allocated OutStream object for sending binary frames
+	this.key = null // the Sec-WebSocket-Key header
+	this.headers = {} // read only map of header names and values. Header names are lower-cased
+
+	// Set listeners
+	socket.on(&#x27;readable&#x27;, function () {
+		that.doRead()
+	})
+
+	socket.on(&#x27;error&#x27;, function (err) {
+		that.emit(&#x27;error&#x27;, err)
+	})
+
+	if (!this.server) {
+		connectEvent = socket.constructor.name === &#x27;CleartextStream&#x27; ? &#x27;secureConnect&#x27; : &#x27;connect&#x27;
+		socket.on(connectEvent, function () {
+			that.startHandshake()
+		})
+	}
+
+	// Close listeners
+	var onclose = function () {
+		if (that.readyState === that.CONNECTING || that.readyState === that.OPEN) {
+			that.emit(&#x27;close&#x27;, 1006, &#x27;&#x27;)
+		}
+		that.readyState = this.CLOSED
+		if (that.frameBuffer instanceof InStream) {
+			that.frameBuffer.end()
+			that.frameBuffer = null
+		}
+		if (that.outStream instanceof OutStream) {
+			that.outStream.end()
+			that.outStream = null
+		}
+	}
+	socket.once(&#x27;close&#x27;, onclose)
+	socket.once(&#x27;finish&#x27;, onclose)
+
+	// super constructor
+	events.EventEmitter.call(this)
+	if (callback) {
+		this.once(&#x27;connect&#x27;, callback)
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.InStream" id="apidoc.element.nodejs-websocket.InStream">
+        function <span class="apidocSignatureSpan">nodejs-websocket.</span>InStream
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function InStream() {
+	stream.Readable.call(this)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.OutStream" id="apidoc.element.nodejs-websocket.OutStream">
+        function <span class="apidocSignatureSpan">nodejs-websocket.</span>OutStream
+        <span class="apidocSignatureSpan">(connection, minSize)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function OutStream(connection, minSize) {
+	var that = this
+	this.connection = connection
+	this.minSize = minSize
+	this.buffer = new Buffer(0)
+	this.hasSent = false // Indicates if any frame has been sent yet
+	stream.Writable.call(this)
+	this.on(&#x27;finish&#x27;, function () {
+		if (that.connection.readyState === that.connection.OPEN) {
+			// Ignore if not connected anymore
+			that.connection.socket.write(frame.createBinaryFrame(that.buffer, !that.connection.server, !that.hasSent, true))
+		}
+		that.connection.outStream = null
+	})
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Server" id="apidoc.element.nodejs-websocket.Server">
+        function <span class="apidocSignatureSpan">nodejs-websocket.</span>Server
+        <span class="apidocSignatureSpan">(secure, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Server(secure, options, callback) {
+	var that = this
+
+	if (typeof options === &#x27;function&#x27;) {
+		callback = options
+		options = undefined
+	}
+
+	var onConnection = function (socket) {
+		var conn = new Connection(socket, that, function () {
+			that.connections.push(conn)
+			conn.removeListener(&#x27;error&#x27;, nop)
+			that.emit(&#x27;connection&#x27;, conn)
+		})
+		conn.on(&#x27;close&#x27;, function () {
+			var pos = that.connections.indexOf(conn)
+			if (pos !== -1) {
+				that.connections.splice(pos, 1)
+			}
+		})
+
+		// Ignore errors before the connection is established
+		conn.on(&#x27;error&#x27;, nop)
+	}
+
+	if (secure) {
+		this.socket = tls.createServer(options, onConnection)
+	} else {
+		this.socket = net.createServer(options, onConnection)
+	}
+
+	this.socket.on(&#x27;close&#x27;, function () {
+		that.emit(&#x27;close&#x27;)
+	})
+	this.socket.on(&#x27;error&#x27;, function (err) {
+		that.emit(&#x27;error&#x27;, err)
+	})
+	this.connections = []
+
+	// super constructor
+	events.EventEmitter.call(this)
+	if (callback) {
+		this.on(&#x27;connection&#x27;, callback)
+	}
+
+	// Add protocol agreement handling
+	/**
+	 * @member {?SelectProtocolCallback}
+	 * @private
+	 */
+	this._selectProtocol = null
+
+	if (options &#x26;&#x26; options.selectProtocol) {
+		// User-provided logic
+		this._selectProtocol = options.selectProtocol
+	} else if (options &#x26;&#x26; options.validProtocols) {
+		// Default logic
+		this._selectProtocol = this._buildSelectProtocol(options.validProtocols)
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.connect" id="apidoc.element.nodejs-websocket.connect">
+        function <span class="apidocSignatureSpan">nodejs-websocket.</span>connect
+        <span class="apidocSignatureSpan">(URL, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">connect = function (URL, options, callback) {
+	var socket
+
+	if (typeof options === &#x27;function&#x27;) {
+		callback = options
+		options = undefined
+	}
+	options = options || {}
+
+	var connectionOptions = parseWSURL(URL)
+	options.port = connectionOptions.port
+	options.host = connectionOptions.host
+
+	connectionOptions.extraHeaders = options.extraHeaders
+	connectionOptions.protocols = options.protocols
+
+	if (connectionOptions.secure) {
+		socket = tls.connect(options)
+	} else {
+		socket = net.connect(options)
+	}
+
+	return new Connection(socket, connectionOptions, callback)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+To support protocols, the `options` object may have either of these properties:
+* `validProtocols`: an array of protocol names the server accepts. The server will pick the most preferred protocol in the client
+&#x27;s list.
+* `selectProtocol`: a callback to resolve the protocol negotiation. This callback will be passed two parameters: the connection
+handling the handshake and the array of protocol names informed by the client, ordered by preference. It should return the resolved
+ protocol, or empty if there is no agreement.
+
+The `callback` is a function which is automatically added to the `&#x22;connection&#x22;` event.
+
+## ws.<span class="apidocCodeKeywordSpan">connect</span>(URL, [options], [callback])
+Returns a new `Connection` object, representing a websocket client connection
+
+`URL` is a string with the format &#x22;ws://localhost:8000/chat&#x22; (the port can be omitted)
+
+`options` is an object that will be passed to net.connect() (or tls.connect() if the protocol is &#x22;wss:&#x22;).
+The properties &#x22;host&#x22; and &#x22;port&#x22; will be read from the `URL`.
+The optional property `extraHeaders` will be used to add more headers to the HTTP handshake request. If present, it must be an object
+, like `{&#x27;X-My-Header&#x27;: &#x27;value&#x27;}`.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.createServer" id="apidoc.element.nodejs-websocket.createServer">
+        function <span class="apidocSignatureSpan">nodejs-websocket.</span>createServer
+        <span class="apidocSignatureSpan">(options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createServer = function (options, callback) {
+	if (typeof options === &#x27;function&#x27; || !arguments.length) {
+		return new Server(false, options)
+	}
+	return new Server(Boolean(options.secure), options, callback)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+# How to use it
+Install with `npm install nodejs-websocket` or put all files in a folder called &#x22;nodejs-websocket&#x22;, and:
+```javascript
+var ws = require(&#x22;nodejs-websocket&#x22;)
+
+// Scream server example: &#x22;hi&#x22; -&#x3e; &#x22;HI!!!&#x22;
+var server = ws.<span class="apidocCodeKeywordSpan">createServer</span>(function (conn) {
+	console.log(&#x22;New connection&#x22;)
+	conn.on(&#x22;text&#x22;, function (str) {
+		console.log(&#x22;Received &#x22;+str)
+		conn.sendText(str.toUpperCase()+&#x22;!!!&#x22;)
+	})
+	conn.on(&#x22;close&#x22;, function (code, reason) {
+		console.log(&#x22;Connection closed&#x22;)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.setBinaryFragmentation" id="apidoc.element.nodejs-websocket.setBinaryFragmentation">
+        function <span class="apidocSignatureSpan">nodejs-websocket.</span>setBinaryFragmentation
+        <span class="apidocSignatureSpan">(bytes)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">setBinaryFragmentation = function (bytes) {
+	Connection.binaryFragmentation = bytes
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+`options` is an object that will be passed to net.connect() (or tls.connect() if the protocol is &#x22;wss:&#x22;).
+The properties &#x22;host&#x22; and &#x22;port&#x22; will be read from the `URL`.
+The optional property `extraHeaders` will be used to add more headers to the HTTP handshake request. If present, it must be an object
+, like `{&#x27;X-My-Header&#x27;: &#x27;value&#x27;}`.
+The optional property `protocols` will be used in the handshake (as &#x22;Sec-WebSocket-Protocol&#x22; header) to allow the server
+ to choose one of those values. If present, it must be an array of strings.
+
+`callback` will be added as &#x22;connect&#x22; listener
+
+## ws.<span class="apidocCodeKeywordSpan">setBinaryFragmentation</span>(bytes)
+Sets the minimum size of a pack of binary data to send in a single frame (default: 512kiB)
+
+## ws.setMaxBufferLength(bytes)
+Set the maximum size the internal Buffer can grow (default: 2MiB)
+If at any time it stays bigger than this, the connection will be closed with code 1009
+This is a security measure, to avoid memory attacks
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.setMaxBufferLength" id="apidoc.element.nodejs-websocket.setMaxBufferLength">
+        function <span class="apidocSignatureSpan">nodejs-websocket.</span>setMaxBufferLength
+        <span class="apidocSignatureSpan">(bytes)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">setMaxBufferLength = function (bytes) {
+	Connection.maxBufferLength = bytes
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+The optional property `protocols` will be used in the handshake (as &#x22;Sec-WebSocket-Protocol&#x22; header) to allow the server
+ to choose one of those values. If present, it must be an array of strings.
+
+`callback` will be added as &#x22;connect&#x22; listener
+
+## ws.setBinaryFragmentation(bytes)
+Sets the minimum size of a pack of binary data to send in a single frame (default: 512kiB)
+
+## ws.<span class="apidocCodeKeywordSpan">setMaxBufferLength</span>(bytes)
+Set the maximum size the internal Buffer can grow (default: 2MiB)
+If at any time it stays bigger than this, the connection will be closed with code 1009
+This is a security measure, to avoid memory attacks
+
+# Server
+The class that represents a websocket server, much like a HTTP server
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nodejs-websocket.Connection" id="apidoc.module.nodejs-websocket.Connection">module nodejs-websocket.Connection</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.Connection" id="apidoc.element.nodejs-websocket.Connection.Connection">
+        function <span class="apidocSignatureSpan">nodejs-websocket.</span>Connection
+        <span class="apidocSignatureSpan">(socket, parentOrOptions, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Connection(socket, parentOrOptions, callback) {
+	var that = this,
+		connectEvent
+
+	if (parentOrOptions instanceof Server) {
+		// Server-side connection
+		this.server = parentOrOptions
+		this.path = null
+		this.host = null
+		this.extraHeaders = null
+		this.protocols = []
+	} else {
+		// Client-side
+		this.server = null
+		this.path = parentOrOptions.path
+		this.host = parentOrOptions.host
+		this.extraHeaders = parentOrOptions.extraHeaders
+		this.protocols = parentOrOptions.protocols || []
+	}
+
+	this.protocol = undefined
+	this.socket = socket
+	this.readyState = this.CONNECTING
+	this.buffer = new Buffer(0)
+	this.frameBuffer = null // string for text frames and InStream for binary frames
+	this.outStream = null // current allocated OutStream object for sending binary frames
+	this.key = null // the Sec-WebSocket-Key header
+	this.headers = {} // read only map of header names and values. Header names are lower-cased
+
+	// Set listeners
+	socket.on(&#x27;readable&#x27;, function () {
+		that.doRead()
+	})
+
+	socket.on(&#x27;error&#x27;, function (err) {
+		that.emit(&#x27;error&#x27;, err)
+	})
+
+	if (!this.server) {
+		connectEvent = socket.constructor.name === &#x27;CleartextStream&#x27; ? &#x27;secureConnect&#x27; : &#x27;connect&#x27;
+		socket.on(connectEvent, function () {
+			that.startHandshake()
+		})
+	}
+
+	// Close listeners
+	var onclose = function () {
+		if (that.readyState === that.CONNECTING || that.readyState === that.OPEN) {
+			that.emit(&#x27;close&#x27;, 1006, &#x27;&#x27;)
+		}
+		that.readyState = this.CLOSED
+		if (that.frameBuffer instanceof InStream) {
+			that.frameBuffer.end()
+			that.frameBuffer = null
+		}
+		if (that.outStream instanceof OutStream) {
+			that.outStream.end()
+			that.outStream = null
+		}
+	}
+	socket.once(&#x27;close&#x27;, onclose)
+	socket.once(&#x27;finish&#x27;, onclose)
+
+	// super constructor
+	events.EventEmitter.call(this)
+	if (callback) {
+		this.once(&#x27;connect&#x27;, callback)
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.super_" id="apidoc.element.nodejs-websocket.Connection.super_">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.</span>super_
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function EventEmitter() {
+  EventEmitter.init.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nodejs-websocket.Connection.prototype" id="apidoc.module.nodejs-websocket.Connection.prototype">module nodejs-websocket.Connection.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.prototype.answerHandshake" id="apidoc.element.nodejs-websocket.Connection.prototype.answerHandshake">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>answerHandshake
+        <span class="apidocSignatureSpan">(lines)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">answerHandshake = function (lines) {
+	var path, key, sha1, headers
+
+	// First line
+	if (lines.length &#x3c; 6) {
+		return false
+	}
+	path = lines[0].match(/^GET (.+) HTTP\/\d\.\d$/i)
+	if (!path) {
+		return false
+	}
+	this.path = path[1]
+
+	// Extract all headers
+	this.readHeaders(lines)
+
+	// Validate necessary headers
+	if (!(&#x27;host&#x27; in this.headers) ||
+		!(&#x27;sec-websocket-key&#x27; in this.headers) ||
+		!(&#x27;upgrade&#x27; in this.headers) ||
+		!(&#x27;connection&#x27; in this.headers)) {
+		return false
+	}
+	if (this.headers.upgrade.toLowerCase() !== &#x27;websocket&#x27; ||
+		this.headers.connection.toLowerCase().split(&#x27;, &#x27;).indexOf(&#x27;upgrade&#x27;) === -1) {
+		return false
+	}
+	if (this.headers[&#x27;sec-websocket-version&#x27;] !== &#x27;13&#x27;) {
+		return false
+	}
+
+	this.key = this.headers[&#x27;sec-websocket-key&#x27;]
+
+	// Agree on a protocol
+	if (&#x27;sec-websocket-protocol&#x27; in this.headers) {
+		// Parse
+		this.protocols = this.headers[&#x27;sec-websocket-protocol&#x27;].split(&#x27;,&#x27;).map(function (each) {
+			return each.trim()
+		})
+
+		// Select protocol
+		if (this.server._selectProtocol) {
+			this.protocol = this.server._selectProtocol(this, this.protocols)
+		}
+	}
+
+	// Build and send the response
+	sha1 = crypto.createHash(&#x27;sha1&#x27;)
+	sha1.end(this.key + &#x27;258EAFA5-E914-47DA-95CA-C5AB0DC85B11&#x27;)
+	key = sha1.read().toString(&#x27;base64&#x27;)
+	headers = {
+		Upgrade: &#x27;websocket&#x27;,
+		Connection: &#x27;Upgrade&#x27;,
+		&#x27;Sec-WebSocket-Accept&#x27;: key
+	}
+	if (this.protocol) {
+		headers[&#x27;Sec-WebSocket-Protocol&#x27;] = this.protocol
+	}
+	this.socket.write(this.buildRequest(&#x27;HTTP/1.1 101 Switching Protocols&#x27;, headers))
+	return true
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+		}
+	}
+	if (!found) {
+		// Wait for more data
+		return false
+	}
+	data = this.buffer.slice(0, i + 4).toString().split(&#x27;\r\n&#x27;)
+	if (this.server ? this.<span class="apidocCodeKeywordSpan">answerHandshake</span>(data) : this.checkHandshake(data)) {
+		this.buffer = this.buffer.slice(i + 4)
+		this.readyState = this.OPEN
+		this.emit(&#x27;connect&#x27;)
+		return true
+	} else {
+		this.socket.end(this.server ? &#x27;HTTP/1.1 400 Bad Request\r\n\r\n&#x27; : undefined)
+		return false
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.prototype.beginBinary" id="apidoc.element.nodejs-websocket.Connection.prototype.beginBinary">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>beginBinary
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">beginBinary = function () {
+	if (this.readyState === this.OPEN) {
+		if (!this.outStream) {
+			return (this.outStream = new OutStream(this, Connection.binaryFragmentation))
+		}
+		this.emit(&#x27;error&#x27;, new Error(&#x27;You can\&#x27;t send more binary frames until you finish sending the previous binary frames&#x27;))
+	} else {
+		this.emit(&#x27;error&#x27;, new Error(&#x27;You can\&#x27;t write to a non-open connection&#x27;))
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+You cannot send text data while sending binary data. If you try to do so, the connection will emit an &#x22;error&#x22; event
+
+## connection.sendText(str, [callback])
+Sends a given string to the other side. You can&#x27;t send text data in the middle of a binary transmission.
+
+`callback` will be added as a listener to write operation over the socket
+
+## connection.<span class="apidocCodeKeywordSpan">beginBinary</span>()
+Asks the connection to begin transmitting binary data. Returns a WritableStream.
+The binary transmission will end when the WritableStream finishes (like when you call .end on it)
+
+## connection.sendBinary(data, [callback])
+Sends a single chunk of binary data (like calling connection.beginBinary().end(data))
+
+`callback` will be added as a listener to write operation over the socket
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.prototype.buildRequest" id="apidoc.element.nodejs-websocket.Connection.prototype.buildRequest">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>buildRequest
+        <span class="apidocSignatureSpan">(requestLine, headers)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">buildRequest = function (requestLine, headers) {
+	var headerString = requestLine + &#x27;\r\n&#x27;,
+		headerName
+
+	for (headerName in headers) {
+		headerString += headerName + &#x27;: &#x27; + headers[headerName] + &#x27;\r\n&#x27;
+	}
+
+	return headerString + &#x27;\r\n&#x27;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+		headers[&#x27;Sec-WebSocket-Protocol&#x27;] = this.protocols.join(&#x27;, &#x27;)
+	}
+
+	for (header in this.extraHeaders) {
+		headers[header] = this.extraHeaders[header]
+	}
+
+	str = this.<span class="apidocCodeKeywordSpan">buildRequest</span>(&#x27;GET &#x27; + this.path + &#x27; HTTP/1.1&#x27;, headers
+)
+	this.socket.write(str)
+}
+
+/**
+* Try to read the handshake from the internal buffer
+* If it succeeds, the handshake data is consumed from the internal buffer
+* @returns {boolean} - whether the handshake was done
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.prototype.checkHandshake" id="apidoc.element.nodejs-websocket.Connection.prototype.checkHandshake">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>checkHandshake
+        <span class="apidocSignatureSpan">(lines)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">checkHandshake = function (lines) {
+	var key, sha1, protocol
+
+	// First line
+	if (lines.length &#x3c; 4) {
+		this.emit(&#x27;error&#x27;, new Error(&#x27;Invalid handshake: too short&#x27;))
+		return false
+	}
+	if (!lines[0].match(/^HTTP\/\d\.\d 101( .*)?$/i)) {
+		this.emit(&#x27;error&#x27;, new Error(&#x27;Invalid handshake: invalid first line format&#x27;))
+		return false
+	}
+
+	// Extract all headers
+	this.readHeaders(lines)
+
+	// Validate necessary headers
+	if (!(&#x27;upgrade&#x27; in this.headers) ||
+		!(&#x27;sec-websocket-accept&#x27; in this.headers) ||
+		!(&#x27;connection&#x27; in this.headers)) {
+		this.emit(&#x27;error&#x27;, new Error(&#x27;Invalid handshake: missing required headers&#x27;))
+		return false
+	}
+	if (this.headers.upgrade.toLowerCase() !== &#x27;websocket&#x27; ||
+		this.headers.connection.toLowerCase().split(&#x27;, &#x27;).indexOf(&#x27;upgrade&#x27;) === -1) {
+		this.emit(&#x27;error&#x27;, new Error(&#x27;Invalid handshake: invalid Upgrade or Connection header&#x27;))
+		return false
+	}
+	key = this.headers[&#x27;sec-websocket-accept&#x27;]
+
+	// Check protocol negotiation
+	protocol = this.headers[&#x27;sec-websocket-protocol&#x27;]
+	if (this.protocols &#x26;&#x26; this.protocols.length) {
+		// The server must choose one from our list
+		if (!protocol || this.protocols.indexOf(protocol) === -1) {
+			this.emit(&#x27;error&#x27;, new Error(&#x27;Invalid handshake: no protocol was negotiated&#x27;))
+			return false
+		}
+	} else {
+		// The server must not choose a protocol
+		if (protocol) {
+			this.emit(&#x27;error&#x27;, new Error(&#x27;Invalid handshake: no protocol negotiation was expected&#x27;))
+			return false
+		}
+	}
+	this.protocol = protocol
+
+	// Check the key
+	sha1 = crypto.createHash(&#x27;sha1&#x27;)
+	sha1.end(this.key + &#x27;258EAFA5-E914-47DA-95CA-C5AB0DC85B11&#x27;)
+	if (key !== sha1.read().toString(&#x27;base64&#x27;)) {
+		this.emit(&#x27;error&#x27;, new Error(&#x27;Invalid handshake: hash mismatch&#x27;))
+		return false
+	}
+	return true
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+		}
+	}
+	if (!found) {
+		// Wait for more data
+		return false
+	}
+	data = this.buffer.slice(0, i + 4).toString().split(&#x27;\r\n&#x27;)
+	if (this.server ? this.answerHandshake(data) : this.<span class="apidocCodeKeywordSpan">checkHandshake</span>(data)) {
+		this.buffer = this.buffer.slice(i + 4)
+		this.readyState = this.OPEN
+		this.emit(&#x27;connect&#x27;)
+		return true
+	} else {
+		this.socket.end(this.server ? &#x27;HTTP/1.1 400 Bad Request\r\n\r\n&#x27; : undefined)
+		return false
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.prototype.close" id="apidoc.element.nodejs-websocket.Connection.prototype.close">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>close
+        <span class="apidocSignatureSpan">(code, reason)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">close = function (code, reason) {
+	if (this.readyState === this.OPEN) {
+		this.socket.write(frame.createCloseFrame(code, reason, !this.server))
+		this.readyState = this.CLOSING
+	} else if (this.readyState !== this.CLOSED) {
+		this.socket.end()
+		this.readyState = this.CLOSED
+	}
+	this.emit(&#x27;close&#x27;, code, reason)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+If the `host` is omitted, the server will accept connections directed to any IPv4 address (INADDR_ANY).
+
+A `port` value of zero will assign a random port.
+
+`callback` will be added as an listener for the `&#x27;listening&#x27;` event.
+
+## server.<span class="apidocCodeKeywordSpan">close</span>([callback])
+Stops the server from accepting new connections and keeps existing connections. This function is asynchronous, the server is finally
+ closed when all connections are ended and the server emits a &#x27;close&#x27; event. The optional callback will be called once
+ the &#x27;close&#x27; event occurs.
+
+## server.socket
+The underlying socket, returned by net.createServer or tls.createServer
+
+## server.connections
+An Array with all connected clients. It&#x27;s useful for broadcasting a message:
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.prototype.doRead" id="apidoc.element.nodejs-websocket.Connection.prototype.doRead">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>doRead
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">doRead = function () {
+	var buffer, temp
+
+	// Fetches the data
+	buffer = this.socket.read()
+	if (!buffer) {
+		// Waits for more data
+		return
+	}
+
+	// Save to the internal buffer
+	this.buffer = Buffer.concat([this.buffer, buffer], this.buffer.length + buffer.length)
+
+	if (this.readyState === this.CONNECTING) {
+		if (!this.readHandshake()) {
+			// May have failed or we&#x27;re waiting for more data
+			return
+		}
+	}
+
+	if (this.readyState !== this.CLOSED) {
+		// Try to read as many frames as possible
+		while ((temp = this.extractFrame()) === true) {}
+		if (temp === false) {
+			// Protocol error
+			this.close(1002)
+		} else if (this.buffer.length &#x3e; Connection.maxBufferLength) {
+			// Frame too big
+			this.close(1009)
+		}
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	this.frameBuffer = null // string for text frames and InStream for binary frames
+	this.outStream = null // current allocated OutStream object for sending binary frames
+	this.key = null // the Sec-WebSocket-Key header
+	this.headers = {} // read only map of header names and values. Header names are lower-cased
+
+	// Set listeners
+	socket.on(&#x27;readable&#x27;, function () {
+		that.<span class="apidocCodeKeywordSpan">doRead</span>()
+	})
+
+	socket.on(&#x27;error&#x27;, function (err) {
+		that.emit(&#x27;error&#x27;, err)
+	})
+
+	if (!this.server) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.prototype.extractFrame" id="apidoc.element.nodejs-websocket.Connection.prototype.extractFrame">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>extractFrame
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">extractFrame = function () {
+	var fin, opcode, B, HB, mask, len, payload, start, i, hasMask
+
+	if (this.buffer.length &#x3c; 2) {
+		return
+	}
+
+	// Is this the last frame in a sequence?
+	B = this.buffer[0]
+	HB = B &#x3e;&#x3e; 4
+	if (HB % 8) {
+		// RSV1, RSV2 and RSV3 must be clear
+		return false
+	}
+	fin = HB === 8
+	opcode = B % 16
+
+	if (opcode !== 0 &#x26;&#x26; opcode !== 1 &#x26;&#x26; opcode !== 2 &#x26;&#x26;
+		opcode !== 8 &#x26;&#x26; opcode !== 9 &#x26;&#x26; opcode !== 10) {
+		// Invalid opcode
+		return false
+	}
+	if (opcode &#x3e;= 8 &#x26;&#x26; !fin) {
+		// Control frames must not be fragmented
+		return false
+	}
+
+	B = this.buffer[1]
+	hasMask = B &#x3e;&#x3e; 7
+	if ((this.server &#x26;&#x26; !hasMask) || (!this.server &#x26;&#x26; hasMask)) {
+		// Frames sent by clients must be masked
+		return false
+	}
+	len = B % 128
+	start = hasMask ? 6 : 2
+
+	if (this.buffer.length &#x3c; start + len) {
+		// Not enough data in the buffer
+		return
+	}
+
+	// Get the actual payload length
+	if (len === 126) {
+		len = this.buffer.readUInt16BE(2)
+		start += 2
+	} else if (len === 127) {
+		// Warning: JS can only store up to 2^53 in its number format
+		len = this.buffer.readUInt32BE(2) * Math.pow(2, 32) + this.buffer.readUInt32BE(6)
+		start += 8
+	}
+	if (this.buffer.length &#x3c; start + len) {
+		return
+	}
+
+	// Extract the payload
+	payload = this.buffer.slice(start, start + len)
+	if (hasMask) {
+		// Decode with the given mask
+		mask = this.buffer.slice(start - 4, start)
+		for (i = 0; i &#x3c; payload.length; i++) {
+			payload[i] ^= mask[i % 4]
+		}
+	}
+	this.buffer = this.buffer.slice(start + len)
+
+	// Proceeds to frame processing
+	return this.processFrame(fin, opcode, payload)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+			// May have failed or we&#x27;re waiting for more data
+			return
+		}
+	}
+
+	if (this.readyState !== this.CLOSED) {
+		// Try to read as many frames as possible
+		while ((temp = this.<span class="apidocCodeKeywordSpan">extractFrame</span>()) === true) {}
+		if (temp === false) {
+			// Protocol error
+			this.close(1002)
+		} else if (this.buffer.length &#x3e; Connection.maxBufferLength) {
+			// Frame too big
+			this.close(1009)
+		}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.prototype.processCloseFrame" id="apidoc.element.nodejs-websocket.Connection.prototype.processCloseFrame">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>processCloseFrame
+        <span class="apidocSignatureSpan">(payload)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">processCloseFrame = function (payload) {
+	var code, reason
+	if (payload.length &#x3e;= 2) {
+		code = payload.readUInt16BE(0)
+		reason = payload.slice(2).toString()
+	} else {
+		code = 1005
+		reason = &#x27;&#x27;
+	}
+	this.socket.write(frame.createCloseFrame(code, reason, !this.server))
+	this.readyState = this.CLOSED
+	this.emit(&#x27;close&#x27;, code, reason)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ */
+Connection.prototype.processFrame = function (fin, opcode, payload) {
+	if (opcode === 8) {
+		// Close frame
+		if (this.readyState === this.CLOSING) {
+			this.socket.end()
+		} else if (this.readyState === this.OPEN) {
+			this.<span class="apidocCodeKeywordSpan">processCloseFrame</span>(payload)
+		}
+		return true
+	} else if (opcode === 9) {
+		// Ping frame
+		if (this.readyState === this.OPEN) {
+			this.socket.write(frame.createPongFrame(payload.toString(), !this.server))
+		}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.prototype.processFrame" id="apidoc.element.nodejs-websocket.Connection.prototype.processFrame">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>processFrame
+        <span class="apidocSignatureSpan">(fin, opcode, payload)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">processFrame = function (fin, opcode, payload) {
+	if (opcode === 8) {
+		// Close frame
+		if (this.readyState === this.CLOSING) {
+			this.socket.end()
+		} else if (this.readyState === this.OPEN) {
+			this.processCloseFrame(payload)
+		}
+		return true
+	} else if (opcode === 9) {
+		// Ping frame
+		if (this.readyState === this.OPEN) {
+			this.socket.write(frame.createPongFrame(payload.toString(), !this.server))
+		}
+		return true
+	} else if (opcode === 10) {
+		// Pong frame
+		this.emit(&#x27;pong&#x27;, payload.toString())
+		return true
+	}
+
+	if (this.readyState !== this.OPEN) {
+		// Ignores if the connection isn&#x27;t opened anymore
+		return true
+	}
+
+	if (opcode === 0 &#x26;&#x26; this.frameBuffer === null) {
+		// Unexpected continuation frame
+		return false
+	} else if (opcode !== 0 &#x26;&#x26; this.frameBuffer !== null) {
+		// Last sequence didn&#x27;t finished correctly
+		return false
+	}
+
+	if (!opcode) {
+		// Get the current opcode for fragmented frames
+		opcode = typeof this.frameBuffer === &#x27;string&#x27; ? 1 : 2
+	}
+
+	if (opcode === 1) {
+		// Save text frame
+		payload = payload.toString()
+		this.frameBuffer = this.frameBuffer ? this.frameBuffer + payload : payload
+
+		if (fin) {
+			// Emits &#x27;text&#x27; event
+			this.emit(&#x27;text&#x27;, this.frameBuffer)
+			this.frameBuffer = null
+		}
+	} else {
+		// Sends the buffer for InStream object
+		if (!this.frameBuffer) {
+			// Emits the &#x27;binary&#x27; event
+			this.frameBuffer = new InStream
+			this.emit(&#x27;binary&#x27;, this.frameBuffer)
+		}
+		this.frameBuffer.addData(payload)
+
+		if (fin) {
+			// Emits &#x27;end&#x27; event
+			this.frameBuffer.end()
+			this.frameBuffer = null
+		}
+	}
+
+	return true
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+		for (i = 0; i &#x3c; payload.length; i++) {
+			payload[i] ^= mask[i % 4]
+		}
+	}
+	this.buffer = this.buffer.slice(start + len)
+
+	// Proceeds to frame processing
+	return this.<span class="apidocCodeKeywordSpan">processFrame</span>(fin, opcode, payload)
+}
+
+/**
+* Process a given frame received
+* @param {boolean} fin
+* @param {number} opcode
+* @param {Buffer} payload
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.prototype.readHandshake" id="apidoc.element.nodejs-websocket.Connection.prototype.readHandshake">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>readHandshake
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">readHandshake = function () {
+	var found = false,
+		i, data
+
+	// Do the handshake and try to connect
+	if (this.buffer.length &#x3e; Connection.maxBufferLength) {
+		// Too big for a handshake
+		if (this.server) {
+			this.socket.end(&#x27;HTTP/1.1 400 Bad Request\r\n\r\n&#x27;)
+		} else {
+			this.socket.end()
+			this.emit(&#x27;error&#x27;, new Error(&#x27;Handshake is too big&#x27;))
+		}
+		return false
+	}
+
+	// Search for &#x27;\r\n\r\n&#x27;
+	for (i = 0; i &#x3c; this.buffer.length - 3; i++) {
+		if (this.buffer[i] === 13 &#x26;&#x26; this.buffer[i + 2] === 13 &#x26;&#x26;
+			this.buffer[i + 1] === 10 &#x26;&#x26; this.buffer[i + 3] === 10) {
+			found = true
+			break
+		}
+	}
+	if (!found) {
+		// Wait for more data
+		return false
+	}
+	data = this.buffer.slice(0, i + 4).toString().split(&#x27;\r\n&#x27;)
+	if (this.server ? this.answerHandshake(data) : this.checkHandshake(data)) {
+		this.buffer = this.buffer.slice(i + 4)
+		this.readyState = this.OPEN
+		this.emit(&#x27;connect&#x27;)
+		return true
+	} else {
+		this.socket.end(this.server ? &#x27;HTTP/1.1 400 Bad Request\r\n\r\n&#x27; : undefined)
+		return false
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+		return
+	}
+
+	// Save to the internal buffer
+	this.buffer = Buffer.concat([this.buffer, buffer], this.buffer.length + buffer.length)
+
+	if (this.readyState === this.CONNECTING) {
+		if (!this.<span class="apidocCodeKeywordSpan">readHandshake</span>()) {
+			// May have failed or we&#x27;re waiting for more data
+			return
+		}
+	}
+
+	if (this.readyState !== this.CLOSED) {
+		// Try to read as many frames as possible
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.prototype.readHeaders" id="apidoc.element.nodejs-websocket.Connection.prototype.readHeaders">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>readHeaders
+        <span class="apidocSignatureSpan">(lines)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">readHeaders = function (lines) {
+	var i, match
+
+	// Extract all headers
+	// Ignore bad-formed lines and ignore the first line (HTTP header)
+	for (i = 1; i &#x3c; lines.length; i++) {
+		if ((match = lines[i].match(/^([a-z-]+): (.+)$/i))) {
+			this.headers[match[1].toLowerCase()] = match[2]
+		}
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	}
+	if (!lines[0].match(/^HTTP\/\d\.\d 101( .*)?$/i)) {
+		this.emit(&#x27;error&#x27;, new Error(&#x27;Invalid handshake: invalid first line format&#x27;))
+		return false
+	}
+
+	// Extract all headers
+	this.<span class="apidocCodeKeywordSpan">readHeaders</span>(lines)
+
+	// Validate necessary headers
+	if (!(&#x27;upgrade&#x27; in this.headers) ||
+		!(&#x27;sec-websocket-accept&#x27; in this.headers) ||
+		!(&#x27;connection&#x27; in this.headers)) {
+		this.emit(&#x27;error&#x27;, new Error(&#x27;Invalid handshake: missing required headers&#x27;))
+		return false
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.prototype.send" id="apidoc.element.nodejs-websocket.Connection.prototype.send">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>send
+        <span class="apidocSignatureSpan">(data, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">send = function (data, callback) {
+	if (typeof data === &#x27;string&#x27;) {
+		this.sendText(data, callback)
+	} else if (Buffer.isBuffer(data)) {
+		this.sendBinary(data, callback)
+	} else {
+		throw new TypeError(&#x27;data should be either a string or a Buffer instance&#x27;)
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+The binary transmission will end when the WritableStream finishes (like when you call .end on it)
+
+## connection.sendBinary(data, [callback])
+Sends a single chunk of binary data (like calling connection.beginBinary().end(data))
+
+`callback` will be added as a listener to write operation over the socket
+
+## connection.<span class="apidocCodeKeywordSpan">send</span>(data, [callback])
+Sends a given string or Buffer to the other side. This is simply an alias for `sendText()` if data is a string or `sendBinary()`
+if the data is a Buffer.
+
+`callback` will be added as a listener to write operation over the socket
+
+## connection.sendPing([data=&#x27;&#x27;])
+Sends a [ping](http://tools.ietf.org/html/rfc6455#section-5.5.2) with optional payload
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.prototype.sendBinary" id="apidoc.element.nodejs-websocket.Connection.prototype.sendBinary">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>sendBinary
+        <span class="apidocSignatureSpan">(data, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sendBinary = function (data, callback) {
+	if (this.readyState === this.OPEN) {
+		if (!this.outStream) {
+			return this.socket.write(frame.createBinaryFrame(data, !this.server, true, true), callback)
+		}
+		this.emit(&#x27;error&#x27;, new Error(&#x27;You can\&#x27;t send more binary frames until you finish sending the previous binary frames&#x27;))
+	} else {
+		this.emit(&#x27;error&#x27;, new Error(&#x27;You can\&#x27;t write to a non-open connection&#x27;))
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+`callback` will be added as a listener to write operation over the socket
+
+## connection.beginBinary()
+Asks the connection to begin transmitting binary data. Returns a WritableStream.
+The binary transmission will end when the WritableStream finishes (like when you call .end on it)
+
+## connection.<span class="apidocCodeKeywordSpan">sendBinary</span>(data, [callback])
+Sends a single chunk of binary data (like calling connection.beginBinary().end(data))
+
+`callback` will be added as a listener to write operation over the socket
+
+## connection.send(data, [callback])
+Sends a given string or Buffer to the other side. This is simply an alias for `sendText()` if data is a string or `sendBinary()`
+if the data is a Buffer.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.prototype.sendPing" id="apidoc.element.nodejs-websocket.Connection.prototype.sendPing">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>sendPing
+        <span class="apidocSignatureSpan">(data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sendPing = function (data) {
+	if (this.readyState === this.OPEN) {
+		this.socket.write(frame.createPingFrame(data || &#x27;&#x27;, !this.server))
+	} else {
+		this.emit(&#x27;error&#x27;, new Error(&#x27;You can\&#x27;t write to a non-open connection&#x27;))
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+`callback` will be added as a listener to write operation over the socket
+
+## connection.send(data, [callback])
+Sends a given string or Buffer to the other side. This is simply an alias for `sendText()` if data is a string or `sendBinary()`
+if the data is a Buffer.
+
+`callback` will be added as a listener to write operation over the socket
+
+## connection.<span class="apidocCodeKeywordSpan">sendPing</span>([data=&#x27;&#x27;])
+Sends a [ping](http://tools.ietf.org/html/rfc6455#section-5.5.2) with optional payload
+
+## connection.close([code, [reason]])
+Starts the closing handshake (sends a close frame)
+
+## connection.socket
+The underlying net or tls socket
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.prototype.sendText" id="apidoc.element.nodejs-websocket.Connection.prototype.sendText">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>sendText
+        <span class="apidocSignatureSpan">(str, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sendText = function (str, callback) {
+	if (this.readyState === this.OPEN) {
+		if (!this.outStream) {
+			return this.socket.write(frame.createTextFrame(str, !this.server), callback)
+		}
+		this.emit(&#x27;error&#x27;, new Error(&#x27;You can\&#x27;t send a text frame until you finish sending binary frames&#x27;))
+	} else {
+		this.emit(&#x27;error&#x27;, new Error(&#x27;You can\&#x27;t write to a non-open connection&#x27;))
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var ws = require(&#x22;nodejs-websocket&#x22;)
+
+// Scream server example: &#x22;hi&#x22; -&#x3e; &#x22;HI!!!&#x22;
+var server = ws.createServer(function (conn) {
+	console.log(&#x22;New connection&#x22;)
+	conn.on(&#x22;text&#x22;, function (str) {
+		console.log(&#x22;Received &#x22;+str)
+		conn.<span class="apidocCodeKeywordSpan">sendText</span>(str.toUpperCase()+&#x22;!!!&#x22;)
+	})
+	conn.on(&#x22;close&#x22;, function (code, reason) {
+		console.log(&#x22;Connection closed&#x22;)
+	})
+}).listen(8001)
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Connection.prototype.startHandshake" id="apidoc.element.nodejs-websocket.Connection.prototype.startHandshake">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Connection.prototype.</span>startHandshake
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">startHandshake = function () {
+	var str, i, key, headers, header
+	key = new Buffer(16)
+	for (i = 0; i &#x3c; 16; i++) {
+		key[i] = Math.floor(Math.random() * 256)
+	}
+	this.key = key.toString(&#x27;base64&#x27;)
+	headers = {
+		Host: this.host,
+		Upgrade: &#x27;websocket&#x27;,
+		Connection: &#x27;Upgrade&#x27;,
+		&#x27;Sec-WebSocket-Key&#x27;: this.key,
+		&#x27;Sec-WebSocket-Version&#x27;: &#x27;13&#x27;
+	}
+
+	if (this.protocols &#x26;&#x26; this.protocols.length) {
+		headers[&#x27;Sec-WebSocket-Protocol&#x27;] = this.protocols.join(&#x27;, &#x27;)
+	}
+
+	for (header in this.extraHeaders) {
+		headers[header] = this.extraHeaders[header]
+	}
+
+	str = this.buildRequest(&#x27;GET &#x27; + this.path + &#x27; HTTP/1.1&#x27;, headers)
+	this.socket.write(str)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	socket.on(&#x27;error&#x27;, function (err) {
+		that.emit(&#x27;error&#x27;, err)
+	})
+
+	if (!this.server) {
+		connectEvent = socket.constructor.name === &#x27;CleartextStream&#x27; ? &#x27;secureConnect&#x27; : &#x27;connect&#x27;
+		socket.on(connectEvent, function () {
+			that.<span class="apidocCodeKeywordSpan">startHandshake</span>()
+		})
+	}
+
+	// Close listeners
+	var onclose = function () {
+		if (that.readyState === that.CONNECTING || that.readyState === that.OPEN) {
+			that.emit(&#x27;close&#x27;, 1006, &#x27;&#x27;)
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nodejs-websocket.InStream" id="apidoc.module.nodejs-websocket.InStream">module nodejs-websocket.InStream</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.InStream.InStream" id="apidoc.element.nodejs-websocket.InStream.InStream">
+        function <span class="apidocSignatureSpan">nodejs-websocket.</span>InStream
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function InStream() {
+	stream.Readable.call(this)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.InStream.super_" id="apidoc.element.nodejs-websocket.InStream.super_">
+        function <span class="apidocSignatureSpan">nodejs-websocket.InStream.</span>super_
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Readable(options) {
+  if (!(this instanceof Readable))
+    return new Readable(options);
+
+  this._readableState = new ReadableState(options, this);
+
+  // legacy
+  this.readable = true;
+
+  if (options &#x26;&#x26; typeof options.read === &#x27;function&#x27;)
+    this._read = options.read;
+
+  Stream.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nodejs-websocket.InStream.prototype" id="apidoc.module.nodejs-websocket.InStream.prototype">module nodejs-websocket.InStream.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.InStream.prototype._read" id="apidoc.element.nodejs-websocket.InStream.prototype._read">
+        function <span class="apidocSignatureSpan">nodejs-websocket.InStream.prototype.</span>_read
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_read = function () {}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.InStream.prototype.addData" id="apidoc.element.nodejs-websocket.InStream.prototype.addData">
+        function <span class="apidocSignatureSpan">nodejs-websocket.InStream.prototype.</span>addData
+        <span class="apidocSignatureSpan">(data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">addData = function (data) {
+	this.push(data)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	} else {
+		// Sends the buffer for InStream object
+		if (!this.frameBuffer) {
+			// Emits the &#x27;binary&#x27; event
+			this.frameBuffer = new InStream
+			this.emit(&#x27;binary&#x27;, this.frameBuffer)
+		}
+		this.frameBuffer.<span class="apidocCodeKeywordSpan">addData</span>(payload)
+
+		if (fin) {
+			// Emits &#x27;end&#x27; event
+			this.frameBuffer.end()
+			this.frameBuffer = null
+		}
+	}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.InStream.prototype.end" id="apidoc.element.nodejs-websocket.InStream.prototype.end">
+        function <span class="apidocSignatureSpan">nodejs-websocket.InStream.prototype.</span>end
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">end = function () {
+	this.push(null)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+`callback` will be added as a listener to write operation over the socket
+
+## connection.beginBinary()
+Asks the connection to begin transmitting binary data. Returns a WritableStream.
+The binary transmission will end when the WritableStream finishes (like when you call .end on it)
+
+## connection.sendBinary(data, [callback])
+Sends a single chunk of binary data (like calling connection.beginBinary().<span class="apidocCodeKeywordSpan">end</span>(data))
+
+`callback` will be added as a listener to write operation over the socket
+
+## connection.send(data, [callback])
+Sends a given string or Buffer to the other side. This is simply an alias for `sendText()` if data is a string or `sendBinary()`
+if the data is a Buffer.
+
+`callback` will be added as a listener to write operation over the socket
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nodejs-websocket.OutStream" id="apidoc.module.nodejs-websocket.OutStream">module nodejs-websocket.OutStream</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.OutStream.OutStream" id="apidoc.element.nodejs-websocket.OutStream.OutStream">
+        function <span class="apidocSignatureSpan">nodejs-websocket.</span>OutStream
+        <span class="apidocSignatureSpan">(connection, minSize)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function OutStream(connection, minSize) {
+	var that = this
+	this.connection = connection
+	this.minSize = minSize
+	this.buffer = new Buffer(0)
+	this.hasSent = false // Indicates if any frame has been sent yet
+	stream.Writable.call(this)
+	this.on(&#x27;finish&#x27;, function () {
+		if (that.connection.readyState === that.connection.OPEN) {
+			// Ignore if not connected anymore
+			that.connection.socket.write(frame.createBinaryFrame(that.buffer, !that.connection.server, !that.hasSent, true))
+		}
+		that.connection.outStream = null
+	})
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.OutStream.super_" id="apidoc.element.nodejs-websocket.OutStream.super_">
+        function <span class="apidocSignatureSpan">nodejs-websocket.OutStream.</span>super_
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Writable(options) {
+  // Writable ctor is applied to Duplexes, too.
+  // `realHasInstance` is necessary because using plain `instanceof`
+  // would return false, as no `_writableState` property is attached.
+
+  // Trying to use the custom `instanceof` for Writable here will also break the
+  // Node.js LazyTransform implementation, which has a non-trivial getter for
+  // `_writableState` that would lead to infinite recursion.
+  if (!(realHasInstance.call(Writable, this)) &#x26;&#x26;
+      !(this instanceof Stream.Duplex)) {
+    return new Writable(options);
+  }
+
+  this._writableState = new WritableState(options, this);
+
+  // legacy.
+  this.writable = true;
+
+  if (options) {
+    if (typeof options.write === &#x27;function&#x27;)
+      this._write = options.write;
+
+    if (typeof options.writev === &#x27;function&#x27;)
+      this._writev = options.writev;
+  }
+
+  Stream.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nodejs-websocket.OutStream.prototype" id="apidoc.module.nodejs-websocket.OutStream.prototype">module nodejs-websocket.OutStream.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.OutStream.prototype._write" id="apidoc.element.nodejs-websocket.OutStream.prototype._write">
+        function <span class="apidocSignatureSpan">nodejs-websocket.OutStream.prototype.</span>_write
+        <span class="apidocSignatureSpan">(chunk, encoding, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_write = function (chunk, encoding, callback) {
+	var frameBuffer
+	this.buffer = Buffer.concat([this.buffer, chunk], this.buffer.length + chunk.length)
+	if (this.buffer.length &#x3e;= this.minSize) {
+		if (this.connection.readyState === this.connection.OPEN) {
+			// Ignore if not connected anymore
+			frameBuffer = frame.createBinaryFrame(this.buffer, !this.connection.server, !this.hasSent, false)
+			this.connection.socket.write(frameBuffer, encoding, callback)
+		}
+		this.buffer = new Buffer(0)
+		this.hasSent = true
+		if (this.connection.readyState !== this.connection.OPEN) {
+			callback()
+		}
+	} else {
+		callback()
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nodejs-websocket.Server" id="apidoc.module.nodejs-websocket.Server">module nodejs-websocket.Server</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Server.Server" id="apidoc.element.nodejs-websocket.Server.Server">
+        function <span class="apidocSignatureSpan">nodejs-websocket.</span>Server
+        <span class="apidocSignatureSpan">(secure, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Server(secure, options, callback) {
+	var that = this
+
+	if (typeof options === &#x27;function&#x27;) {
+		callback = options
+		options = undefined
+	}
+
+	var onConnection = function (socket) {
+		var conn = new Connection(socket, that, function () {
+			that.connections.push(conn)
+			conn.removeListener(&#x27;error&#x27;, nop)
+			that.emit(&#x27;connection&#x27;, conn)
+		})
+		conn.on(&#x27;close&#x27;, function () {
+			var pos = that.connections.indexOf(conn)
+			if (pos !== -1) {
+				that.connections.splice(pos, 1)
+			}
+		})
+
+		// Ignore errors before the connection is established
+		conn.on(&#x27;error&#x27;, nop)
+	}
+
+	if (secure) {
+		this.socket = tls.createServer(options, onConnection)
+	} else {
+		this.socket = net.createServer(options, onConnection)
+	}
+
+	this.socket.on(&#x27;close&#x27;, function () {
+		that.emit(&#x27;close&#x27;)
+	})
+	this.socket.on(&#x27;error&#x27;, function (err) {
+		that.emit(&#x27;error&#x27;, err)
+	})
+	this.connections = []
+
+	// super constructor
+	events.EventEmitter.call(this)
+	if (callback) {
+		this.on(&#x27;connection&#x27;, callback)
+	}
+
+	// Add protocol agreement handling
+	/**
+	 * @member {?SelectProtocolCallback}
+	 * @private
+	 */
+	this._selectProtocol = null
+
+	if (options &#x26;&#x26; options.selectProtocol) {
+		// User-provided logic
+		this._selectProtocol = options.selectProtocol
+	} else if (options &#x26;&#x26; options.validProtocols) {
+		// Default logic
+		this._selectProtocol = this._buildSelectProtocol(options.validProtocols)
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Server.super_" id="apidoc.element.nodejs-websocket.Server.super_">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Server.</span>super_
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function EventEmitter() {
+  EventEmitter.init.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nodejs-websocket.Server.prototype" id="apidoc.module.nodejs-websocket.Server.prototype">module nodejs-websocket.Server.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Server.prototype._buildSelectProtocol" id="apidoc.element.nodejs-websocket.Server.prototype._buildSelectProtocol">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Server.prototype.</span>_buildSelectProtocol
+        <span class="apidocSignatureSpan">(validProtocols)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_buildSelectProtocol = function (validProtocols) {
+	return function (conn, protocols) {
+		var i
+
+		for (i = 0; i &#x3c; protocols.length; i++) {
+			if (validProtocols.indexOf(protocols[i]) !== -1) {
+				// A valid protocol was found
+				return protocols[i]
+			}
+		}
+
+		// No agreement
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	this._selectProtocol = null
+
+	if (options &#x26;&#x26; options.selectProtocol) {
+		// User-provided logic
+		this._selectProtocol = options.selectProtocol
+	} else if (options &#x26;&#x26; options.validProtocols) {
+		// Default logic
+		this._selectProtocol = this.<span class="apidocCodeKeywordSpan">_buildSelectProtocol</span>(options.validProtocols)
+	}
+}
+
+util.inherits(Server, events.EventEmitter)
+module.exports = Server
+
+Connection = require(&#x27;./Connection&#x27;)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Server.prototype.close" id="apidoc.element.nodejs-websocket.Server.prototype.close">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Server.prototype.</span>close
+        <span class="apidocSignatureSpan">(callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">close = function (callback) {
+	if (callback) {
+		this.once(&#x27;close&#x27;, callback)
+	}
+	this.socket.close()
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+If the `host` is omitted, the server will accept connections directed to any IPv4 address (INADDR_ANY).
+
+A `port` value of zero will assign a random port.
+
+`callback` will be added as an listener for the `&#x27;listening&#x27;` event.
+
+## server.<span class="apidocCodeKeywordSpan">close</span>([callback])
+Stops the server from accepting new connections and keeps existing connections. This function is asynchronous, the server is finally
+ closed when all connections are ended and the server emits a &#x27;close&#x27; event. The optional callback will be called once
+ the &#x27;close&#x27; event occurs.
+
+## server.socket
+The underlying socket, returned by net.createServer or tls.createServer
+
+## server.connections
+An Array with all connected clients. It&#x27;s useful for broadcasting a message:
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.Server.prototype.listen" id="apidoc.element.nodejs-websocket.Server.prototype.listen">
+        function <span class="apidocSignatureSpan">nodejs-websocket.Server.prototype.</span>listen
+        <span class="apidocSignatureSpan">(port, host, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">listen = function (port, host, callback) {
+	var that = this
+
+	if (typeof host === &#x27;function&#x27;) {
+		callback = host
+		host = undefined
+	}
+
+	if (callback) {
+		this.on(&#x27;listening&#x27;, callback)
+	}
+
+	this.socket.listen(port, host, function () {
+		that.emit(&#x27;listening&#x27;)
+	})
+
+	return this
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	conn.on(&#x22;text&#x22;, function (str) {
+		console.log(&#x22;Received &#x22;+str)
+		conn.sendText(str.toUpperCase()+&#x22;!!!&#x22;)
+	})
+	conn.on(&#x22;close&#x22;, function (code, reason) {
+		console.log(&#x22;Connection closed&#x22;)
+	})
+}).<span class="apidocCodeKeywordSpan">listen</span>(8001)
+```
+
+Se other examples inside the folder samples
+
+# ws
+The main object, returned by `require(&#x22;nodejs-websocket&#x22;)`.
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nodejs-websocket.frame" id="apidoc.module.nodejs-websocket.frame">module nodejs-websocket.frame</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.frame.createBinaryFrame" id="apidoc.element.nodejs-websocket.frame.createBinaryFrame">
+        function <span class="apidocSignatureSpan">nodejs-websocket.frame.</span>createBinaryFrame
+        <span class="apidocSignatureSpan">(data, masked, first, fin)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createBinaryFrame = function (data, masked, first, fin) {
+	var payload, meta
+
+	first = first === undefined ? true : first
+	masked = masked === undefined ? false : masked
+	if (masked) {
+		payload = new Buffer(data.length)
+		data.copy(payload)
+	} else {
+		payload = data
+	}
+	meta = generateMetaData(fin === undefined ? true : fin, first ? 2 : 0, masked, payload)
+
+	return Buffer.concat([meta, payload], meta.length + payload.length)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * Sends a binary buffer at once
+ * @param {Buffer} data
+ * @param {Function} [callback] will be executed when the data is finally written out
+ */
+Connection.prototype.sendBinary = function (data, callback) {
+	if (this.readyState === this.OPEN) {
+		if (!this.outStream) {
+			return this.socket.write(frame.<span class="apidocCodeKeywordSpan">createBinaryFrame</span>(data, !this.server, true, true),
+callback)
+		}
+		this.emit(&#x27;error&#x27;, new Error(&#x27;You can\&#x27;t send more binary frames until you finish sending the previous binary
+ frames&#x27;))
+	} else {
+		this.emit(&#x27;error&#x27;, new Error(&#x27;You can\&#x27;t write to a non-open connection&#x27;))
+	}
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.frame.createCloseFrame" id="apidoc.element.nodejs-websocket.frame.createCloseFrame">
+        function <span class="apidocSignatureSpan">nodejs-websocket.frame.</span>createCloseFrame
+        <span class="apidocSignatureSpan">(code, reason, masked)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createCloseFrame = function (code, reason, masked) {
+	var payload, meta
+
+	if (code !== undefined &#x26;&#x26; code !== 1005) {
+		payload = new Buffer(reason === undefined ? &#x27;--&#x27; : &#x27;--&#x27; + reason)
+		payload.writeUInt16BE(code, 0)
+	} else {
+		payload = new Buffer(0)
+	}
+	meta = generateMetaData(true, 8, masked === undefined ? false : masked, payload)
+
+	return Buffer.concat([meta, payload], meta.length + payload.length)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * If the connection isn&#x27;t OPEN, closes it without sending a close frame
+ * @param {number} [code]
+ * @param {string} [reason]
+ * @fires close
+ */
+Connection.prototype.close = function (code, reason) {
+	if (this.readyState === this.OPEN) {
+		this.socket.write(frame.<span class="apidocCodeKeywordSpan">createCloseFrame</span>(code, reason, !this.server))
+		this.readyState = this.CLOSING
+	} else if (this.readyState !== this.CLOSED) {
+		this.socket.end()
+		this.readyState = this.CLOSED
+	}
+	this.emit(&#x27;close&#x27;, code, reason)
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.frame.createPingFrame" id="apidoc.element.nodejs-websocket.frame.createPingFrame">
+        function <span class="apidocSignatureSpan">nodejs-websocket.frame.</span>createPingFrame
+        <span class="apidocSignatureSpan">(data, masked)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createPingFrame = function (data, masked) {
+	var payload, meta
+
+	payload = new Buffer(data)
+	meta = generateMetaData(true, 9, masked === undefined ? false : masked, payload)
+
+	return Buffer.concat([meta, payload], meta.length + payload.length)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+/**
+* Sends a ping to the remote
+* @param {string} [data=&#x27;&#x27;] - optional ping data
+* @fires pong when pong reply is received
+*/
+Connection.prototype.sendPing = function (data) {
+	if (this.readyState === this.OPEN) {
+		this.socket.write(frame.<span class="apidocCodeKeywordSpan">createPingFrame</span>(data || &#x27;&#x27;, !this.server))
+	} else {
+		this.emit(&#x27;error&#x27;, new Error(&#x27;You can\&#x27;t write to a non-open connection&#x27;))
+	}
+}
+
+/**
+* Close the connection, sending a close frame and waiting for response
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.frame.createPongFrame" id="apidoc.element.nodejs-websocket.frame.createPongFrame">
+        function <span class="apidocSignatureSpan">nodejs-websocket.frame.</span>createPongFrame
+        <span class="apidocSignatureSpan">(data, masked)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createPongFrame = function (data, masked) {
+	var payload, meta
+
+	payload = new Buffer(data)
+	meta = generateMetaData(true, 10, masked === undefined ? false : masked, payload)
+
+	return Buffer.concat([meta, payload], meta.length + payload.length)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+		} else if (this.readyState === this.OPEN) {
+			this.processCloseFrame(payload)
+		}
+		return true
+	} else if (opcode === 9) {
+		// Ping frame
+		if (this.readyState === this.OPEN) {
+			this.socket.write(frame.<span class="apidocCodeKeywordSpan">createPongFrame</span>(payload.toString(), !this.server))
+		}
+		return true
+	} else if (opcode === 10) {
+		// Pong frame
+		this.emit(&#x27;pong&#x27;, payload.toString())
+		return true
+	}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nodejs-websocket.frame.createTextFrame" id="apidoc.element.nodejs-websocket.frame.createTextFrame">
+        function <span class="apidocSignatureSpan">nodejs-websocket.frame.</span>createTextFrame
+        <span class="apidocSignatureSpan">(data, masked)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createTextFrame = function (data, masked) {
+	var payload, meta
+
+	payload = new Buffer(data)
+	meta = generateMetaData(true, 1, masked === undefined ? false : masked, payload)
+
+	return Buffer.concat([meta, payload], meta.length + payload.length)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * Send a given string to the other side
+ * @param {string} str
+ * @param {Function} [callback] will be executed when the data is finally written out
+ */
+Connection.prototype.sendText = function (str, callback) {
+	if (this.readyState === this.OPEN) {
+		if (!this.outStream) {
+			return this.socket.write(frame.<span class="apidocCodeKeywordSpan">createTextFrame</span>(str, !this.server), callback)
+		}
+		this.emit(&#x27;error&#x27;, new Error(&#x27;You can\&#x27;t send a text frame until you finish sending binary frames&#x27;))
+	} else {
+		this.emit(&#x27;error&#x27;, new Error(&#x27;You can\&#x27;t write to a non-open connection&#x27;))
+	}
+}
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
